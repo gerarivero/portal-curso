@@ -1,0 +1,51 @@
+{% load static %}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="{% static 'login.css' %}">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="main">
+
+
+    <div class="container">
+
+<center>
+
+<div class="middle">
+
+      <div id="login">
+
+        <form name="login" action="{{linkloginonly}}" method="post">
+
+            <input type="hidden" name="dst" value="{{linkorig}}" />
+
+          <fieldset class="clearfix">
+
+            <p ><span class="fa fa-user"></span><input type="text"  Placeholder="Username" required></p> <!-- JS because of IE support; better: placeholder="Username" -->
+            <p><span class="fa fa-lock"></span><input type="password"  Placeholder="Password" required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+
+             <div>
+                                <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="{{linkloginonly}}?dst={{linkorigesc}}&amp;username=T-{{macesc}}">TRIAL</a></span>
+                                <span style="width:50%; text-align:right;  display: inline-block;"><input type="submit" value="Sign In"></span>
+                            </div>
+
+          </fieldset>
+<div class="clearfix">{% if error %}<br /><div style="color: #FF8080; font-size: 9px">{{error}}</div>{% endif %}</div>
+        </form>
+
+        <div class="clearfix"></div>
+
+      </div> <!-- end login -->
+      <div class="logo">LOGO
+
+          <div class="clearfix"></div>
+      </div>
+
+      </div>
+</center>
+    </div>
+
+</div>
