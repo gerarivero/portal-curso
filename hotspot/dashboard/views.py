@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView
-from hotspot.portal.models import Device
+from portal.models import Device
 
 
 class dashboard(ListView):
