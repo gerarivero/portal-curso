@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from portal.models import Device
 
+
 class dashboard(ListView):
     model = Device
     template_name = 'dashboard/conectados.html'

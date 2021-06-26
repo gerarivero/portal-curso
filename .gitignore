@@ -29,15 +29,13 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+GNS3
 
-EntornoHotspotSinPass
-EntornoPortal
 envCurso
-todaladb.json
 *html.txt
-hotspot_remover_usuario.txt
 .idea
 
+Dockerfile-*
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.

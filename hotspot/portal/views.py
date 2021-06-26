@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render
 from .models import Device
 # Create your views here.
@@ -9,6 +11,7 @@ import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
 logger = logging.getLogger(__name__)
+
 
 @csrf_exempt
 def login_router(request):
@@ -65,6 +68,7 @@ def save_device(request):
     device.ip = ip
     device.hotspot = servername
     device.logged_in = False if loggedin=='no' else True
+    device.last_login = datetime.now()
     device.account = username
     device.save()
     logger.info(device)

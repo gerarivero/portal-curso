@@ -1,4 +1,4 @@
-from django.utils import timezone
+from datetime import datetime
 
 from django.db import models
 
@@ -9,7 +9,7 @@ class Device(models.Model):
     ip = models.GenericIPAddressField()
     # a device could not have an account registered if the login is with out user or password
     account = models.CharField(max_length=20)
-    last_login = models.DateTimeField('last login', default=timezone.now)
+    last_login = models.DateTimeField('last login', default=datetime.now)
     logged_in = models.BooleanField(default=False)
     hotspot = models.CharField(max_length=20)
 
