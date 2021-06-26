@@ -39,7 +39,8 @@ WORKDIR $APP_HOME
 RUN apk update
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
-RUN pip install --no-cache /wheels/*
+RUN pip install --no-cache /wheels/* \
+    && apk add --no-cache tzdata
 
 COPY . $APP_HOME
 
