@@ -9,7 +9,7 @@ RUN pip install --upgrade pip
 
 # install dependencies
 COPY ./requirements.txt .
-RUN pip --no-cache-dir --no-deps  -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # create directory for the app user
 RUN mkdir -p /home/app
@@ -29,5 +29,5 @@ RUN ./makemigrations.sh
 
 EXPOSE 8080/tcp
 
-
+CMD [ "python", "manage.py", "runserver", "0.0.0.0:8080" ]
 
