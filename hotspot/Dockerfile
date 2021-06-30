@@ -13,11 +13,8 @@ COPY . .
 
 # install dependencies
 COPY ./requirements.txt .
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt \
-    && find /usr/local \
-        \( -type d -a -name test -o -name tests \) \
-        -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
-        -exec rm -rf '{}' +
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt 
+
 
 # Now multistage builds
 FROM python:3.7-alpine
@@ -59,9 +56,9 @@ RUN ./makemigrations.sh
 
 EXPOSE 8080/tcp
 
-ENTRYPOINT [ "dumb-init", "--" ]
+#ENTRYPOINT [ "dumb-init", "--" ]
 
-CMD [ "python", "manage.py", "runserver", "0.0.0.0:8080" ]
+#CMD [ "python", "manage.py", "runserver", "0.0.0.0:8080" ]
 
 
 
