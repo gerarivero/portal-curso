@@ -3,7 +3,7 @@
 <body>
 	<center>Redirecting to External Portal... Please wait<br>
 		<!-- You need to replace webapp for the domain name or IP of your docker app -->
-		<form name="redirect" method="post" action="http://webapp.local/portal/">
+		<form name="redirect" method="post" action="http://webapp.local:8080/portal/">
 			<input type="hidden" name="mac" value="$(mac)">
 			<input type="hidden" name="ip" value="$(ip)">
 			<input type="hidden" name="username" value="$(username)">
