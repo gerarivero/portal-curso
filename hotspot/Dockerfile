@@ -42,6 +42,9 @@ COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --no-cache /wheels/* \
     && apk add --no-cache tzdata
 
+RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.5/dumb-init_1.2.5_x86_64
+RUN chmod +x /usr/local/bin/dumb-init
+
 COPY . $APP_HOME
 
 # chown all the files to the app user
@@ -56,7 +59,7 @@ RUN ./makemigrations.sh
 
 EXPOSE 8080/tcp
 
-#ENTRYPOINT [  ]
+ENTRYPOINT [ "dumb-init", "--" ]
 
 CMD [ "python", "manage.py", "runserver", "0.0.0.0:8080" ]
 
