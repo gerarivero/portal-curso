@@ -8,43 +8,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Login - Hotspot</title>
+        <title>Login</title>
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <script src="{% static 'js/font-awesome.min.js' %}" crossorigin="anonymous"></script>
+        <style>
+            body{
+                background-image: url("{% static 'img/fondoLogin.jpg' %}");
+            }
+        </style>
     </head>
     <body class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
-                <main>
+                <main class="row align-items-center vh-100">
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <div class="shadow-lg border-0 rounded-lg mt-5">
-                                {% if error %}<div class="alert alert-danger" role="alert" align="center">{{error}}</div>{% endif %}
-                                </div>
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                <!--<div class="card shadow-lg border-0 rounded-lg mt-5">-->
+                                    <div class="card-header">
+                                        <h3 class="text-center font-weight-light my-4" style="color: aliceblue;">Login</h3>
+                                    </div>
                                     <div class="card-body">
                                         <form action="{{linkloginonly}}" method="post">
+
                                             <input type="hidden" name="dst" value="{{linkorig}}" />
-                                            <div class="form-floating mb-3">
+
+                                            <div class="input-group mb-3" style="display: inline-flex;">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-user" style="font-size: x-large;"></span>
+                                                </div>
                                                 <input class="form-control" name="username" id="inputEmail" type="text" placeholder="Usuario" required value="{{username}}"/>
-                                                <label for="inputEmail">Usuario</label>
                                             </div>
-                                            <div class="form-floating mb-3">
+
+                                            <div class="input-group mb-3" style="display: inline-flex;">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock" style="font-size: x-large;"></span>
+                                                </div>
                                                 <input class="form-control" name="password" id="inputPassword" type="password" placeholder="Password" required />
-                                                <label for="inputPassword">Password</label>
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                                <span style="width:48%; text-align:left;  display: inline-block;"><a class="small-text" href="{{linkloginonly}}?dst={{linkorigesc}}&amp;username=T-{{macesc}}">TRIAL</a></span>
-                                                <span><input class="btn-primary" type="submit" value="Sign In"></span>
+                                                <span style="width:48%; text-align:left;  display: inline-block;">
+                                                    <a class="small-text" href="{{linkloginonly}}?dst={{linkorigesc}}&amp;username=T-{{macesc}}" style="color: aliceblue;">
+                                                    TRIAL
+                                                    </a>
+                                                </span>
+                                                <button type="button" class="btn btn-primary">Sign In</button>
                                             </div>
-
+                                            <div class="clearfix">{% if error %}<br /><div style="color: #FF8080; font-size: 9px">{{error}}</div>{% endif %}</div>
                                         </form>
                                     </div>
 
-                                </div>
+                               <!-- </div>-->
                             </div>
                         </div>
                     </div>
