@@ -11,7 +11,6 @@ class dashboard(ListView):
         contexto = super(dashboard, self).get_context_data(**kwargs)
         dispositivos = Device.objects.filter(logged_in=True)
         contexto['dispositivos'] = dispositivos
-        print(contexto)
         return contexto
         
 
