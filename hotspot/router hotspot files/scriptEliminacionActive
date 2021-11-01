@@ -1,0 +1,1 @@
+/tool fetch url="http://webapp.local:8080/portal/disconnect/$"mac-address"/" keep-result=no
