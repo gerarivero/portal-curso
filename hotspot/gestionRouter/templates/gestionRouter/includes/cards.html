@@ -1,0 +1,54 @@
+    <div class="row row-offcanvas row-offcanvas-left">
+        <div class="col main pt-5 mt-3">
+            <div class="row mb-3">
+                <div class="col-xl-3 col-sm-6 py-2">
+                    <div class="card subida text-white h-100">
+                        <div class="card-body subida">
+                            <div class="rotate">
+                                <i class="fas fa-hdd  fa-8x"></i>
+                            </div>
+                            <h6 class="text-uppercase">disco libre</h6>
+                            <h1 class="display-4">{{estado.free_disk}}%</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 py-2">
+                    <div class="card text-white twitter h-100">
+                        <div class="card-body twitter">
+                            <div class="rotate">
+                                <i class="fas fa-tachometer-alt fa-8x"></i>
+                            </div>
+                            <h6 class="text-uppercase">memoria libre</h6>
+                            <h1 class="display-4">{{estado.free_memory}}%</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 py-2">
+                    <div class="card text-white bajada h-100">
+                        <div class="card-body bajada">
+                            <div class="rotate">
+                                <i class="fas fa-microchip fa-8x" ></i>
+                            </div>
+                            <h6 class="text-uppercase">carga cpu</h6>
+                            <h1 class="display-4">{{estado.cpu_load}}%</h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 py-2">
+                    <div class="card text-white bg-success h-100">
+                        <div class="card-body bg-success">
+                            <div class="rotate">
+                                <i class="fas fa-cloud fa-8x"></i>
+                            </div>
+                            <h6 class="text-uppercase">Router {{estado.name}}</h6>
+                            <h1 class="display-8">{{estado.board_name}}</h1>
+
+                            <h6 class="text-uppercase">{% if estado.routeros %}version RouterOS{% endif %}</h6>
+                            <h1 class="display-8">{{estado.routeros}}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!--/row-->

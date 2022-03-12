@@ -1,0 +1,43 @@
+
+
+{% for router in routers %}
+
+<tr>
+
+    <td>{{ router.name}}</td>
+    <td>{{ router.host_ip}}</td>
+    <td>{{ router.api_port }}</td>
+    <td>{{ router.api_ssl_port }}</td>
+    <td class="dt-center">
+        {% if router.certificate %}
+        <label class="switch" title="disable ssl login">
+            <input type="checkbox" checked="checked" class="success js-disable-ssl" data-url="{% url 'gestionRouter:disable_router_ssl' router.id %}" id="id_uncheck_{{router.id}}">
+            <span class="slider round"></span>
+        </label>
+        {% else %}
+        <label class="switch" title="enable ssl login">
+            <input type="checkbox" class="success js-enable-ssl"  data-url="{% url 'gestionRouter:enable_router_ssl' router.id %}" id="id_check_{{router.id}}">
+            <span class="slider round"></span>
+        </label>
+        {% endif %}
+    </td>
+    <td class="dt-center">
+        <button id="connection_{{router.id}}" type="button" title="test connetion" class="js-connect-router" data-url="{% url 'gestionRouter:conectar_router' router.id %}">
+            <i class="fa-solid fa-globe"></i>
+           
+        </button>
+    </td>
+
+    <td class="dt-center">
+        <button type="button" title="edit" class="js-update-router" data-url="{% url 'gestionRouter:editar_router' router.id %}">
+            <i class="fa-solid fa-pencil"></i>
+            
+        </button>
+        <button type="button" title="remove" class="js-remove" data-url="{% url 'gestionRouter:eliminar_router' router.id %}">
+            <i class="fa-solid fa-minus"></i>
+            
+        </button>
+
+    </td>
+</tr>
+{% endfor %}

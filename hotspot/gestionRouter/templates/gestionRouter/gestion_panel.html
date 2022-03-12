@@ -1,0 +1,102 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+<!--
+{% block style %}
+    <link rel="stylesheet" href="{% static 'gestionRouter/css/switch_slide.css' %}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+
+{% endblock %}
+-->
+
+{% block CuerpoPagina %}
+    <div id="tarjetas">
+        {%include 'gestionRouter/includes/cards.html'%}
+    </div>
+
+<div class="col main pt-5 mt-3">
+
+    <h1 class="page-header">GESTION DE PORTAL</h1>
+
+
+    <br>
+     <!-- TABLE TO SHOW ROUTER  -->
+    <h3 class="page-header">ROUTER</h3>
+    <p>
+        <!-- BUTTON TO TRIGGER THE ADD ROUTER ACTION -->
+        <button type="button" class="btn btn-primary js-add-router" data-url="{% url 'gestionRouter:agregar_router' %}">
+            <strong class="text-uppercase">cargar router</strong>
+        </button>
+    </p>
+
+    <table class="table table-bordered dt-responsive nowrap projects-table table-striped" style="width:100%" id="datatablesSimple">
+
+      <thead class="thead-inverse">
+      <tr>
+          <th class="dt-center">ROUTER</th>
+          <th class="dt-center">HOST</th>
+          <th>PUERTO API</th>
+          <th>PUERTO API SSL</th>
+          <th class="dt-center">SSL</th>
+          <th class="dt-center">CONEXION</th>
+          <th class="dt-center">ACCION</th>
+      </tr>
+      </thead>
+
+      <tbody>
+        {% include 'gestionRouter/includes/lista_router_parcial.html' %}
+      </tbody>
+    </table>
+
+
+    <br>
+    
+    <!-- THE MODAL WE WILL BE USING -->
+
+    <div class="modal fade" id="modal">
+        <div class="modal-dialog">
+            <div class="modal-content"></div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+
+    <script src="{% static 'gestionRouter/js/crud_modal_router.js' %}"></script>
+
+    <script src="{% static 'gestionRouter/js/crud_modal_hotspot.js' %}"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#table-router').DataTable();
+        } );
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#table-hotspot').DataTable();
+        } );
+    </script>
+
+    <script>
+        function mostrarPswd()
+        {
+          var x = document.getElementById("id_password");
+          if (x.type === "password") {
+            x.type = "text";
+            $('#switch_pass').prop('title','hide password');
+          } else {
+            x.type = "password";
+            $('#switch_pass').prop('title','show password');
+          }
+
+        }
+    </script>
+
+
+{% endblock %}
