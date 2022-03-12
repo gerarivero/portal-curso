@@ -31,6 +31,7 @@ share/python-wheels/
 MANIFEST
 GNS3
 
+EntornoHotspot
 envCurso
 *html.txt
 .idea
