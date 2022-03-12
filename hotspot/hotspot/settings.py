@@ -43,6 +43,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [ 
     'dashboard',
+    'gestionRouter',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
