@@ -24,12 +24,12 @@
     <h3 class="page-header">ROUTER</h3>
     <p>
         <!-- BUTTON TO TRIGGER THE ADD ROUTER ACTION -->
-        <button type="button" class="btn btn-primary js-add-router" data-url="{% url 'gestionRouter:agregar_router' %}">
+        <button type="button" class="btn btn-primary js-add-router" onclick="abrir_modal_creacion('{% url 'gestionRouter:agregar_router' %}')">
             <strong class="text-uppercase">cargar router</strong>
         </button>
     </p>
 
-    <table class="table table-bordered dt-responsive nowrap projects-table table-striped" style="width:100%" id="datatablesSimple">
+    <table class="table table-bordered dt-responsive nowrap projects-table table-striped" style="width:100%" id="table-router">
 
       <thead class="thead-inverse">
       <tr>
@@ -64,13 +64,16 @@
 {% endblock %}
 
 {% block javascript %}
-
+    <script src="{% static 'gestionRouter/js/modal_router.js' %}"></script>
+    
+    <!--
+        
     <script src="{% static 'gestionRouter/js/crud_modal_router.js' %}"></script>
 
     <script src="{% static 'gestionRouter/js/crud_modal_hotspot.js' %}"></script>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+-->
     <script>
         $(document).ready(function() {
             $('#table-router').DataTable();

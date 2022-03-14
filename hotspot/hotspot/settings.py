@@ -46,7 +46,11 @@ LOCAL_APPS = [
     'gestionRouter',
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+THIRD_APPS = [
+    'widget_tweaks',
+]
+
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

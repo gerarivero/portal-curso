@@ -1,6 +1,8 @@
-from django.shortcuts import render
-from django.views.generic import ListView
+from re import template
+from django.shortcuts import redirect, render
+from django.views.generic import ListView,CreateView
 
+from .forms import RouterForm
 from .models import Router
 
 
@@ -31,9 +33,19 @@ class ListaRouterYHostpot(ListView):
     def get_queryset(self):
         return Router.objects.order_by('name')
         
-         
-def agregar_router(request):
-    return None
+
+class AgregarRouter(CreateView):
+    template_name = 'gestionRouter/includes/formulario_modal_agregar_router.html'
+    model = Router
+    form_class = RouterForm
+
+    def post(self, request, *args, **kwargs) :
+        formulario = self.form_class(request.POST)
+        if formulario.is_valid():
+            formulario.save()
+            return redirect('gestionRouter:panel')
+        else:
+            return render(request,self.template_name,{'form':formulario})
 
 def agregar_portal(request):
     return None

@@ -1,0 +1,22 @@
+ {% load widget_tweaks %}
+
+<form method="post" action="{% url 'gestionRouter:agregar_router' %}">
+ 
+  {% csrf_token %}
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">AGREGAR ROUTER</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {% include 'gestionRouter/includes/render_form.html' %}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        <button type="submit" class="btn btn-info">GUARDAR</button>
+      </div>
+    </div>
+  </div>
+
+</form>
