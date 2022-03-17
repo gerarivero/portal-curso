@@ -1,6 +1,7 @@
- {% load widget_tweaks %}
 
-<form method="post" action="{% url 'gestionRouter:agregar_router' %}">
+{% load widget_tweaks %}
+
+<form method="post" action="{% url 'gestionRouter:agregar_router' %}" id="formulario_creacion">
  
   {% csrf_token %}
   <div class="modal-dialog">
@@ -14,6 +15,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">CANCELAR</button>
+        <!--<button type="button" class="btn btn-info" onclick="registrar_router()">GUARDAR</button>-->
         <button type="submit" class="btn btn-info">GUARDAR</button>
       </div>
     </div>

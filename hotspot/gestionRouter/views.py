@@ -1,7 +1,12 @@
+from pyexpat.errors import messages
+from django.contrib import messages as msg
+import json
 from re import template
+from django.http import JsonResponse
 from django.shortcuts import redirect, render
 from django.views.generic import ListView,CreateView
-
+from django.template.loader import render_to_string
+from django.urls                    import reverse_lazy
 from .forms import RouterForm
 from .models import Router
 
@@ -33,19 +38,44 @@ class ListaRouterYHostpot(ListView):
     def get_queryset(self):
         return Router.objects.order_by('name')
         
-
 class AgregarRouter(CreateView):
+    template_name = 'gestionRouter/formulario_agregar_router.html'
+    model = Router
+    form_class = RouterForm        
+
+    def get_success_url(self):
+        msg.success(self.request,'Router {} guardado con exito'.format(self.object.name))
+        return reverse_lazy('gestionRouter:panel')
+"""
+class AgregarRouterJson(CreateView):
     template_name = 'gestionRouter/includes/formulario_modal_agregar_router.html'
     model = Router
     form_class = RouterForm
 
-    def post(self, request, *args, **kwargs) :
-        formulario = self.form_class(request.POST)
-        if formulario.is_valid():
-            formulario.save()
-            return redirect('gestionRouter:panel')
+    def post(self, request, *args, **kwargs):
+        if request.is_ajax():
+            print('is ajax')
+            formulario = self.form_class(request.POST)
+            if formulario.is_valid():
+                formulario.save()
+                #mensaje = msg.success(request,'Router registrado con éxito')
+                #response = JsonResponse({'messages':mensaje})
+                # obtener la lista de router para mostrar en la tabla
+                html['html_table-router_tbody'] = render_to_string()
+                response = JsonResponse(html)
+                response.status_code = 200
+                return response
+            else:
+                print('fomulario INVALIDO')
+                html = dict()
+                html['html_formulario'] = render_to_string(self.template_name,{'form':formulario},request)
+                response = JsonResponse(html)
+                response.status_code = 400
+                return response
         else:
-            return render(request,self.template_name,{'form':formulario})
+            print('no es ajax')
+            return redirect('gestionRouter:panel')
+"""
 
 def agregar_portal(request):
     return None

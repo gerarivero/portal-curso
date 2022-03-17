@@ -14,19 +14,23 @@
         {%include 'gestionRouter/includes/cards.html'%}
     </div>
 
+<ul class="messages" id="mensaje">
+    {% include 'gestionRouter/includes/mensajes.html' %}
+</ul>
+
 <div class="col main pt-5 mt-3">
 
     <h1 class="page-header">GESTION DE PORTAL</h1>
-
-
     <br>
      <!-- TABLE TO SHOW ROUTER  -->
     <h3 class="page-header">ROUTER</h3>
     <p>
-        <!-- BUTTON TO TRIGGER THE ADD ROUTER ACTION -->
-        <button type="button" class="btn btn-primary js-add-router" onclick="abrir_modal_creacion('{% url 'gestionRouter:agregar_router' %}')">
+        <!-- BUTTON TO TRIGGER THE ADD ROUTER ACTION 
+            boton con el evento onclick para levanta la ventana modal
+        <button type="button" class="btn btn-primary js-add-router" onclick="abrir_modal_creacion('{% url 'gestionRouter:agregar_router' %}')">-->
+        <a class="btn btn-primary" href="{% url 'gestionRouter:agregar_router' %}">
             <strong class="text-uppercase">cargar router</strong>
-        </button>
+        </a>
     </p>
 
     <table class="table table-bordered dt-responsive nowrap projects-table table-striped" style="width:100%" id="table-router">
@@ -55,7 +59,9 @@
 
     <div class="modal fade" id="modal">
         <div class="modal-dialog">
-            <div class="modal-content"></div>
+            <div class="modal-content">
+                
+            </div>
         </div>
     </div>
 
