@@ -22,18 +22,17 @@
         {% endif %}
     </td>
     <td class="dt-center">
-        <button id="connection_{{router.id}}" type="button" title="test connetion" class="js-connect-router" data-url="{% url 'gestionRouter:conectar_router' router.id %}">
+        <button id="connection_{{router.id}}" type="button" title="test connetion" class="btn btn-light js-connect-router" data-url="{% url 'gestionRouter:conectar_router' router.id %}">
             <i class="fas fa-globe"></i>
            
         </button>
     </td>
 
     <td class="dt-center">
-        <button type="button" title="edit" class="js-update-router" data-url="{% url 'gestionRouter:editar_router' router.id %}">
-            <i class="far fa-pencil"></i>
-            
-        </button>
-        <button type="button" title="remove" class="js-remove" data-url="{% url 'gestionRouter:eliminar_router' router.id %}">
+        <a title="edit" class="btn btn-success" href="{% url 'gestionRouter:editar_router' router.id %}">
+            <i class="fas fa-pencil-alt"></i>
+        </a>
+        <button type="button" title="remove" class="btn btn-danger" data-url="{% url 'gestionRouter:eliminar_router' router.id %}">
             <i class="fas fa-minus"></i>
             
         </button>

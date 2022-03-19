@@ -1,25 +1,26 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
 
-<!--
+
 {% block style %}
     <link rel="stylesheet" href="{% static 'gestionRouter/css/switch_slide.css' %}">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="{% static 'gestionRouter/css/cards.css' %}">
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">-->
 
 {% endblock %}
--->
+
 
 {% block CuerpoPagina %}
     <div id="tarjetas">
         {%include 'gestionRouter/includes/cards.html'%}
     </div>
 
-<ul class="messages" id="mensaje">
-    {% include 'gestionRouter/includes/mensajes.html' %}
-</ul>
 
 <div class="col main pt-5 mt-3">
-
+    <ul class="messages" id="mensaje">
+        {% include 'gestionRouter/includes/mensajes.html' %}
+    </ul>
+    
     <h1 class="page-header">GESTION DE PORTAL</h1>
     <br>
      <!-- TABLE TO SHOW ROUTER  -->

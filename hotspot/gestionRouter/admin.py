@@ -5,7 +5,7 @@ from .models import Router, Interface
 
 # Register your models here.
 class RouterAdmin(admin.ModelAdmin):
-    list_display = ['id','name','host_ip','username','password','api_port','api_ssl_port','certificate','connected','timestamp']
+    list_display = ['id','name','host_ip','dns','username','password','api_port','api_ssl_port','certificate','connected','timestamp']
 
 admin.site.register(Router,RouterAdmin)
 

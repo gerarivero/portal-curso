@@ -1,12 +1,9 @@
 from pyexpat.errors import messages
 from django.contrib import messages as msg
-import json
 from re import template
-from django.http import JsonResponse
-from django.shortcuts import redirect, render
-from django.views.generic import ListView,CreateView
-from django.template.loader import render_to_string
-from django.urls                    import reverse_lazy
+from django.views.generic import ListView,CreateView,UpdateView
+
+from django.urls import reverse_lazy
 from .forms import RouterForm
 from .models import Router
 
@@ -34,14 +31,11 @@ class ListaRouterYHostpot(ListView):
         #context['hotspots'] = hotspot = Hotspot.objects.order_by('name')
         return context
 
-
-    def get_queryset(self):
-        return Router.objects.order_by('name')
         
 class AgregarRouter(CreateView):
-    template_name = 'gestionRouter/formulario_agregar_router.html'
     model = Router
-    form_class = RouterForm        
+    form_class = RouterForm    
+    template_name = 'gestionRouter/formulario_agregar_router.html'    
 
     def get_success_url(self):
         msg.success(self.request,'Router {} guardado con exito'.format(self.object.name))
@@ -76,6 +70,22 @@ class AgregarRouterJson(CreateView):
             print('no es ajax')
             return redirect('gestionRouter:panel')
 """
+
+class EditarRouter(UpdateView):
+    model = Router
+    form_class = RouterForm
+    template_name = 'gestionRouter/formulario_editar_router.html'
+
+    def get_context_data(self, **kwargs):
+        contexto = super(EditarRouter,self).get_context_data(**kwargs)
+        return contexto
+        
+    def get_success_url(self):
+        msg.success(self.request,'Router {} guardado con exito'.format(self.object.name))
+        return reverse_lazy('gestionRouter:panel')
+
+def agregar_router(request):
+    return None
 
 def agregar_portal(request):
     return None

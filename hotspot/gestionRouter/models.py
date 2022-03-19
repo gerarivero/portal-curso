@@ -5,6 +5,7 @@ from django.db import models
 class Router(models.Model):
     name = models.CharField(max_length=30)
     host_ip = models.GenericIPAddressField()
+    dns = models.CharField(max_length=40,null=True)
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=20)
     api_port = models.IntegerField(default=8728)

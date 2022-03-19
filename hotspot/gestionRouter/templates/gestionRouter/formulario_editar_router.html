@@ -7,11 +7,11 @@
 {% endblock %}
 
 {% block CuerpoPagina %}
-<form method="post" action="{% url 'gestionRouter:agregar_router' %}" id="formulario_creacion">
+<form method="post" action="{% url 'gestionRouter:editar_router' router.id %}" id="formulario_edicion">
  
   {% csrf_token %}
   <div class="row">
-    <h4 class="modal-title" style="text-align: center;">AGREGAR ROUTER</h4>
+    <h4 class="modal-title" style="text-align: center;">EDITAR ROUTER</h4>
   </div>
 
   {% if form.is_bound  %}
@@ -32,35 +32,35 @@
       </div>
 
       <div class="row g-3">
-      <div class="col-md-6 position-relative">
-        <label for="{{form.host_ip.id_for_label}}" class="form-label">{{form.host_ip.label}}</label>
-        {% if form.host_ip.errors %}
-          {% render_field form.host_ip class="form-control is-invalid" %}
-          {% for error in form.host_ip.errors %}
-            <div class="invalid-feedback" style="margin-left:25%">
-              {{ error }}
-            </div>
-          {% endfor %}
-        {% else %} 
-          {% render_field form.host_ip class="form-control is-valid" %}
-        {% endif %}
+        <div class="col-md-6 position-relative">
+          <label for="{{form.host_ip.id_for_label}}" class="form-label">{{form.host_ip.label}}</label>
+          {% if form.host_ip.errors %}
+            {% render_field form.host_ip class="form-control is-invalid" %}
+            {% for error in form.host_ip.errors %}
+              <div class="invalid-feedback" style="margin-left:25%">
+                {{ error }}
+              </div>
+            {% endfor %}
+          {% else %} 
+            {% render_field form.host_ip class="form-control is-valid" %}
+          {% endif %}
+        </div>
+        
+        <div class="col-md-6 position-relative">
+          <label for="{{form.dns.id_for_label}}" class="form-label">{{form.dns.label}}</label>
+          {% if form.dns.errors %}
+            {% render_field form.dns class="form-control is-invalid" %}
+            {% for error in form.dns.errors %}
+              <div class="invalid-feedback" style="margin-left:25%">
+                {{ error }}
+              </div>
+            {% endfor %}
+          {% else %} 
+            {% render_field form.dns class="form-control is-valid" %}
+          {% endif %}
+        </div>
       </div>
 
-      <div class="col-md-6 position-relative">
-        <label for="{{form.dns.id_for_label}}" class="form-label">{{form.dns.label}}</label>
-        {% if form.dns.errors %}
-          {% render_field form.dns class="form-control is-invalid" %}
-          {% for error in form.dns.errors %}
-            <div class="invalid-feedback" style="margin-left:25%">
-              {{ error }}
-            </div>
-          {% endfor %}
-        {% else %} 
-          {% render_field form.dns class="form-control is-valid" %}
-        {% endif %}
-      </div>
-      </div>
-      
       <div class="mb-3">
         <label for="id_{{form.api_port.id_for_label}}" class="form-label">{{form.api_port.label}}</label>
         {% if form.api_port.errors %}
@@ -124,17 +124,16 @@
     </div>
 
     <div class="row g-3">
-    <div class="col-md-6 position-relative">
-      <label for="{{form.host_ip.id_for_label}}" class="form-label">{{form.host_ip.label}}</label>
-      {% render_field form.host_ip class="form-control " %}
-    </div>
+      <div class="col-md-6 position-relative">
+        <label for="{{form.host_ip.id_for_label}}" class="form-label">{{form.host_ip.label}}</label>
+        {% render_field form.host_ip class="form-control " %}
+      </div>
 
-    <div class="col-md-6 position-relative">
-      <label for="{{form.dns.id_for_label}}" class="form-label">{{form.dns.label}}</label>
-      {% render_field form.dns class="form-control " %}
+      <div class="col-md-6 position-relative">
+        <label for="{{form.dns.id_for_label}}" class="form-label">{{form.dns.label}}</label>
+        {% render_field form.dns class="form-control " %}
+      </div>
     </div>
-    </div>
-
     <div class="mb-3">
       <label for="id_{{form.api_port.id_for_label}}" class="form-label">{{form.api_port.label}}</label>
       {% render_field form.api_port class="form-control" %}
