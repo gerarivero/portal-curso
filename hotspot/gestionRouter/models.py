@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Router(models.Model):
     name = models.CharField(max_length=30)
-    host_ip = models.GenericIPAddressField()
+    host_ip = models.GenericIPAddressField(null=True)
     dns = models.CharField(max_length=40,null=True)
     username = models.CharField(max_length=30)
     password = models.CharField(max_length=20)

@@ -1,4 +1,5 @@
 from tkinter import Widget
+
 from django import forms
 from django.core.exceptions import ValidationError
 
@@ -11,8 +12,6 @@ class RouterForm(forms.ModelForm):
         model = Router
         fields = ('name', 'host_ip', 'dns','api_port','api_ssl_port', 'username','password')
 
-
-
         widget = {
             'password' : forms.PasswordInput(
                 render_value=True
@@ -21,19 +20,26 @@ class RouterForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(RouterForm,self).__init__(*args, **kwargs)
+        
+        self.fields['dns'].required = False
+        self.fields['host_ip'].required = False
+
         instance = kwargs.pop('instance', '')
         if instance:
            self.fields['host_ip'].widget.attrs['readonly'] = True
+           
 
 
-    def clean_dns(self):
-        dns = self.cleaned_data['dns']
-        host_ip = self.cleaned_data['host_ip']
+    def clean(self):
+        cleaned_data = super().clean()
+        dns = cleaned_data['dns']
+        host_ip = cleaned_data['host_ip']
 
-        if len(dns) > 0 and len(host_ip) > 0:
-            raise ValidationError('Debe ingresar un valor en host_ip o dns')
         
-        if len(dns) == 0 and len(host_ip) == 0:
-            raise ValidationError('Debe ingresar un valor en host_ip o dns')
-
-        return dns
+        if dns != None and host_ip != None:
+            self.add_error('dns',ValidationError('Debe ingresar un valor en host ip o dns'))
+            self.add_error('host_ip',ValidationError('Debe ingresar un valor en host ip o dns'))
+        
+        if dns == None and host_ip == None:
+            self.add_error('dns',ValidationError('Debe ingresar un valor en host ip o dns'))
+            self.add_error('host_ip',ValidationError('Debe ingresar un valor en host ip o dns'))
