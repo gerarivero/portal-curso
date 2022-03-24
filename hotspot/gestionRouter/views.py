@@ -1,8 +1,10 @@
 from pyexpat.errors import messages
 from django.contrib import messages as msg
 from re import template
-from django.views.generic import ListView,CreateView,UpdateView
-
+from django.views.generic import ListView,CreateView,UpdateView,DeleteView
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.template.loader import render_to_string
 from django.urls import reverse_lazy
 from .forms import RouterForm
 from .models import Router
@@ -40,36 +42,7 @@ class AgregarRouter(CreateView):
     def get_success_url(self):
         msg.success(self.request,'Router {} guardado con exito'.format(self.object.name))
         return reverse_lazy('gestionRouter:panel')
-"""
-class AgregarRouterJson(CreateView):
-    template_name = 'gestionRouter/includes/formulario_modal_agregar_router.html'
-    model = Router
-    form_class = RouterForm
 
-    def post(self, request, *args, **kwargs):
-        if request.is_ajax():
-            print('is ajax')
-            formulario = self.form_class(request.POST)
-            if formulario.is_valid():
-                formulario.save()
-                #mensaje = msg.success(request,'Router registrado con éxito')
-                #response = JsonResponse({'messages':mensaje})
-                # obtener la lista de router para mostrar en la tabla
-                html['html_table-router_tbody'] = render_to_string()
-                response = JsonResponse(html)
-                response.status_code = 200
-                return response
-            else:
-                print('fomulario INVALIDO')
-                html = dict()
-                html['html_formulario'] = render_to_string(self.template_name,{'form':formulario},request)
-                response = JsonResponse(html)
-                response.status_code = 400
-                return response
-        else:
-            print('no es ajax')
-            return redirect('gestionRouter:panel')
-"""
 
 class EditarRouter(UpdateView):
     model = Router
@@ -84,8 +57,23 @@ class EditarRouter(UpdateView):
         msg.success(self.request,'Router {} guardado con exito'.format(self.object.name))
         return reverse_lazy('gestionRouter:panel')
 
-def agregar_router(request):
-    return None
+class EliminarRouter(DeleteView):
+    model = Router
+    template_name = 'gestionRouter/includes/formulario_modal_eliminar_router.html'
+
+    def delete(self, request, *args, **kwargs):
+        if request.is_ajax():
+            print('is ajax')
+            self.object = self.get_object()
+            self.object.delete()
+            mensaje = msg.success(request,'Router eliminado con éxito')
+            response = JsonResponse({'mensaje':mensaje},safe=False)
+            response.status_code = 201
+            return response
+            
+        else:
+            return redirect('gestionRouter:panel')
+
 
 def agregar_portal(request):
     return None
@@ -94,10 +82,4 @@ def enable_router_ssl(request,pk):
     return None
 
 def conectar_router(request,pk):
-    return None
-
-def editar_router(request,pk):
-    return None
-
-def eliminar_router(request,pk):
     return None

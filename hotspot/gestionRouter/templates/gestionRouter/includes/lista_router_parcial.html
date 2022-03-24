@@ -2,7 +2,7 @@
 
 {% for router in routers %}
 
-<tr>
+<tr id="router_fila_{{ router.id}}">
 
     <td>{{ router.name}}</td>
     <td>{{ router.host_ip}}</td>
@@ -32,9 +32,8 @@
         <a title="edit" class="btn btn-success" href="{% url 'gestionRouter:editar_router' router.id %}">
             <i class="fas fa-pencil-alt"></i>
         </a>
-        <button type="button" title="remove" class="btn btn-danger" data-url="{% url 'gestionRouter:eliminar_router' router.id %}">
+        <button type="button" title="remove" class="btn btn-danger" onclick="abrir_modal_creacion('{% url 'gestionRouter:eliminar_router' router.id %}')">
             <i class="fas fa-minus"></i>
-            
         </button>
 
     </td>
